@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine as build
+FROM adoptopenjdk/openjdk11:ubi as build
 
 RUN apk add --update ca-certificates && rm -rf /var/cache/apk/* && \
     find /usr/share/ca-certificates/mozilla/ -name "*.crt" -exec keytool -import -trustcacerts \
@@ -21,7 +21,7 @@ COPY src src
 RUN mvn install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM openjdk:8-jdk-alpine
+FROM adoptopenjdk/openjdk11:ubi
 ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
