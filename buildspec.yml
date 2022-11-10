@@ -15,14 +15,14 @@ phases:
       - echo Building the Docker image...
       - docker build -t $APPLICATION_NAME:$IMAGE_TAG .
       - docker tag $APPLICATION_NAME:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
-      - docker tag $APPLICATION_NAME:$IMAGE_TAG $REPOSITORY_URI:latest
+
   post_build:
     commands:
       - echo Build completed on `date`
       - echo pushing to repo
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"Aydahar-Bot-Container", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"AydaharBotContainer", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
