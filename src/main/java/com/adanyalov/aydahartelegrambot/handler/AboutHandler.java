@@ -18,7 +18,8 @@ public class AboutHandler implements Handler {
     public static final String HANDLER_NAME = "AboutHandler";
     public static final String COMMAND_NAME = "/about";
     public static final String ABOUT_MESSAGE = EmojiParser.parseToUnicode(""
-            + "Developed using Spring, Hibernate & Postgres by @adanyalov\n\n"
+            + "Developed using Spring, Hibernate & Postgres by @adanyalov\n"
+            + "Hosted on AWS RDS & ECS w/ CI/CD pipeline\n\n"
             + "Feel free to message me\n"
             + "P.S. I'm looking for a Java backend developer position :wink:");
 
