@@ -1,11 +1,5 @@
 FROM openjdk:13-alpine as build
 
-RUN apk add --update ca-certificates && rm -rf /var/cache/apk/* && \
-    find /usr/share/ca-certificates/mozilla/ -name "*.crt" -exec keytool -import -trustcacerts \
-    -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts -storepass changeit -noprompt \
-    -file {} -alias {} \; && \
-    keytool -list -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts --storepass changeit
-
 ENV MAVEN_VERSION 3.8.1
 ENV MAVEN_HOME /usr/lib/mvn
 ENV PATH $MAVEN_HOME/bin:$PATH
@@ -26,5 +20,5 @@ ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.app.JavaAppApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.adanyalov.aydahartelegrambot.AydaharTelegramBotApplication"]
 EXPOSE 8777
