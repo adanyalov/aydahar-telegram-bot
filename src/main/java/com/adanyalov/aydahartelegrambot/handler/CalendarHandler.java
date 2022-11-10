@@ -139,6 +139,5 @@ public class CalendarHandler implements Handler {
         return HANDLER_NAME;
     }
 
-
 }
 
