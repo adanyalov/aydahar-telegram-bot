@@ -31,6 +31,8 @@ public class CalendarHandler implements Handler {
     public static final String HANDLER_NAME = "CalendarHandler";
     public static final String COMMAND_NAME = "/calendar";
     public static final String NO_EVENTS_MESSAGE = "No events were entered into the calendar, ask the staff";
+    public static final String CALENDAR_URL = "https://www.googleapis.com/calendar/v3/calendars/"
+            + "m13lb88d3b2qtbktl17lfdmb9c@group.calendar.google.com/events";
     public static final String CALENDAR_HYPERLINK = "<a href='https://calendar.google.com/calendar"
             + "/u/0/embed?src=m13lb88d3b2qtbktl17lfdmb9c@group.calendar.google.com"
             + "&ctz=Asia/Almaty'>Aydahar's Google Calendar</a>";
@@ -68,12 +70,11 @@ public class CalendarHandler implements Handler {
     }
 
     private String generateURLToGetEventsForTheNext(Integer hours, SimpleDateFormat format) {
-        String baseUrl = "https://www.googleapis.com/calendar/v3/calendars/"
-                + "m13lb88d3b2qtbktl17lfdmb9c@group.calendar.google.com/events?";
+        String baseUrl = CALENDAR_URL + "?";
         String key = config.getGoogleAPI();
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        c.add(Calendar.HOUR, -12);
+        c.add(Calendar.HOUR, -2);
         String minTimestamp = format.format(c.getTime());
         c.add(Calendar.HOUR, hours);
         String maxTimestamp = format.format(c.getTime());
@@ -105,15 +106,6 @@ public class CalendarHandler implements Handler {
             Date date = inputFormat.parse(dateString);
             String testString = outputFormat.format(date);
             response.append(testString).append(" - <b>").append(summary).append("</b>\n");
-            /*
-            String description = ((JSONObject) item).getString("description");
-            description = description.replaceAll("<br>", "\n")
-                            .replaceAll("</?(?!(?:i|strong|b)\\b)[a-z](?:[^>\"']|\"[^\"]*\"|'[^']*')*>", "")
-                    .replaceAll("&nbsp;", " ");
-
-            log.info("EVENT DESCRIPTION: " + description);
-            response.append(description);
-            */
             countEvents++;
         }
 

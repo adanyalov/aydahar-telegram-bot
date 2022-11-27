@@ -1,6 +1,8 @@
 package com.adanyalov.aydahartelegrambot.model;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 
 import javax.persistence.*;
@@ -8,7 +10,9 @@ import java.sql.Timestamp;
 
 
 @Entity(name = "usersDataTable")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class User {
 
     @Id

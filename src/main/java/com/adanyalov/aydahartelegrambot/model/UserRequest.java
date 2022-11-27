@@ -1,13 +1,17 @@
 package com.adanyalov.aydahartelegrambot.model;
 
 import com.sun.istack.NotNull;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Table(name = "requests")
 public class UserRequest {
 

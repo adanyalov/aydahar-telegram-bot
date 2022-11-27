@@ -1,8 +1,12 @@
 package com.adanyalov.aydahartelegrambot.model;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class Card {
     private String name;
 
@@ -17,6 +21,10 @@ public class Card {
     private String language;
 
     private String foil;
+
+    public Card() {
+
+    }
 
     public String toString() {
         return count + " " + name + foil + " " + price + " (" + edition + " " + language + ")\n";

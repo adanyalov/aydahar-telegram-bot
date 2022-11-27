@@ -1,12 +1,16 @@
 package com.adanyalov.aydahartelegrambot.model;
 
 import com.sun.istack.NotNull;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity(name = "deckboxes")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class Deckbox {
 
     @Id
@@ -22,5 +26,14 @@ public class Deckbox {
 
     public Deckbox() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Deckbox{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", owner='" + owner + '\'' +
+                '}';
     }
 }
