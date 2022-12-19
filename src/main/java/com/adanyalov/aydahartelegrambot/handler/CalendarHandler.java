@@ -92,7 +92,7 @@ public class CalendarHandler implements Handler {
         URL url = new URL(urlString);
         JSONObject resp = getJson(url);
         JSONArray items = resp.getJSONArray("items");
-        response.append("Upcoming events within the next two weeks:\n\n");
+        response.append("Upcoming events within the next 7 days:\n\n");
         int countEvents = 0;
         for (Object item: items) {
             JSONObject itemJSON = (JSONObject) item;
