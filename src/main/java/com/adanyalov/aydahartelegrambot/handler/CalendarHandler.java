@@ -49,7 +49,7 @@ public class CalendarHandler implements Handler {
 
         SendMessage eventsMessage = createMessageTemplate(user);
         try {
-            String urlString = generateURLToGetEventsForTheNext(2*168, ISOFormat);
+            String urlString = generateURLToGetEventsForTheNext(168, ISOFormat);
             String eventsOverview = aggregateEventsAsText(urlString, ISOFormat, outputFormat);
 
             eventsMessage.enableHtml(true);
@@ -74,7 +74,7 @@ public class CalendarHandler implements Handler {
         String key = config.getGoogleAPI();
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        c.add(Calendar.HOUR, -2);
+        c.add(Calendar.HOUR, -1);
         String minTimestamp = format.format(c.getTime());
         c.add(Calendar.HOUR, hours);
         String maxTimestamp = format.format(c.getTime());
